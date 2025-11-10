@@ -1,0 +1,70 @@
+Analyse et interprétation — TP3
+Décennie analysée : 1950-1959
+
+Résumé des résultats :
+- Documents analysés : 1000
+- Nombre de clusters : 6
+
+Cohérence des clusters:
+Les clusters obtenus à partir de TF-IDF + KMeans semblent regrouper des documents sur des thèmes majoritaires.
+Les top-terms par cluster (ci-dessous) fournissent une première indication sur les thématiques présentes — par exemple des clusters dominés par des termes liés à la politique, au sport, à la culture ou à l'international.
+
+Exemples de documents par cluster (1-2 fichiers exemplaires) :
+Cluster 0: KB_JB838_1950-01-10_01-00006.txt, KB_JB838_1950-02-13_01-00005.txt
+Cluster 1: KB_JB838_1950-01-22_01-00014.txt, KB_JB838_1950-02-15_01-00011.txt
+Cluster 2: KB_JB838_1950-01-06_01-00002.txt, KB_JB838_1950-02-18_01-00009.txt
+Cluster 3: KB_JB838_1950-01-15_01-00010.txt, KB_JB838_1950-02-17_01-00009.txt
+Cluster 4: KB_JB838_1950-01-07_01-00013.txt, KB_JB838_1950-02-15_01-00014.txt
+Cluster 5: KB_JB838_1950-01-08_01-00011.txt, KB_JB838_1950-03-29_01-00008.txt
+
+Méthodologie et limites:
+- Représentation: TF-IDF (ngrams 1-2) utilisée pour KMeans. Les top-terms sont extraits à partir des centroïdes du modèle KMeans.
+- Prétraitement: minimal (normalisation des espaces); le vectorizer a utilisé stopwords en anglais. Pour un corpus français, il serait préférable d'utiliser une liste de stopwords FR et de normaliser/lemmatiser.
+Ces choix peuvent affecter la cohérence des clusters (mots fonctionnels, lemmes, etc.).
+- Les wordclouds par cluster sont disponibles dans le dossier `tp3/` pour inspection visuelle.
+
+Top terms par cluster (top 10):
+Cluster 0: 0, bat, pts, équipe, match, division, course, finale, fut, mutuel
+Cluster 1: 1, dem, rossel, ag, ag rossel, tél, pr, ec, ec ag, ecrire
+Cluster 2: 2, ministre, président, que les, gouvernement, fut, que la, conseil, lieu, politique
+Cluster 3: 3, ena, ea, pf, notaire, tél, du notaire, pf ea, etude, ca
+Cluster 4: 4, tél, cv, ford, opel, ag, renault, rossel, ag rossel, chevrolet
+Cluster 5: 5, tél, app, av, rossel, ag, ag rossel, pr, ét, conf
+
+Word2Vec — modèles entraînés et exemples:
+- base: vocab_size=52990
+  president -> sénateur:0.853; président:0.843; vice-président:0.825
+  paris -> londres:0.733; rome:0.710; vienne:0.669
+  guerre -> libération:0.709; mort:0.633; reconnaissance:0.605
+  similarity(paris,france) = 0.607
+  similarity(guerre,paix) = 0.503
+  similarity(president,france) = 0.111
+
+- w3_mc3: vocab_size=80270
+  president -> vice-président:0.884; sénateur:0.882; greffier:0.878
+  paris -> rome:0.761; londres:0.748; washington:0.660
+  guerre -> libération:0.747; conférence:0.715; grève:0.702
+  similarity(paris,france) = 0.660
+  similarity(guerre,paix) = 0.638
+  similarity(president,france) = 0.343
+
+- w5_mc5: vocab_size=52990
+  president -> vice-président:0.864; sénateur:0.862; greffier:0.856
+  paris -> londres:0.733; rome:0.669; vienne:0.657
+  guerre -> libération:0.731; république:0.667; frontière:0.662
+  similarity(paris,france) = 0.612
+  similarity(guerre,paix) = 0.581
+  similarity(president,france) = 0.277
+
+- w7_mc3: vocab_size=80270
+  president -> sénateur:0.855; sident:0.842; vice-président:0.834
+  paris -> rome:0.760; londres:0.721; berlin:0.646
+  guerre -> libération:0.794; république:0.690; ratification:0.664
+  similarity(paris,france) = 0.639
+  similarity(guerre,paix) = 0.562
+  similarity(president,france) = 0.232
+
+Conclusions et recommandations:
+- Les clusters donnent une bonne vue d'ensemble mais doivent être validés manuellement : vérifier quelques documents par cluster pour confirmer la thématique.
+- Améliorations: utiliser stopwords FR, normalisation (unicode, accents), lemmatisation, et tester différentes valeurs de n_clusters.
+- Pour Word2Vec: comparer modèles avec fenêtres et min_count différents (déjà entraîné quelques variantes), et évaluer qualitativement via analogies et similarités.
