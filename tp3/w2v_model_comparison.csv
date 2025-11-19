@@ -1,0 +1,4 @@
+model,path,vocab_size,sim_paris_france,sim_guerre_paix,sim_president_france
+w3_mc3,tps\tp3\word2vec_w3_mc3.model,80270,0.6601,0.6379,0.3434
+w5_mc5,tps\tp3\word2vec_w5_mc5.model,52990,0.6120,0.5806,0.2767
+w7_mc3,tps\tp3\word2vec_w7_mc3.model,80270,0.6386,0.5622,0.2316
