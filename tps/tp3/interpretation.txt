@@ -67,4 +67,4 @@ Word2Vec — modèles entraînés et exemples:
 Conclusions et recommandations:
 - Les clusters donnent une bonne vue d'ensemble mais doivent être validés manuellement : vérifier quelques documents par cluster pour confirmer la thématique.
 - Améliorations: utiliser stopwords FR, normalisation (unicode, accents), lemmatisation, et tester différentes valeurs de n_clusters.
-- Pour Word2Vec: comparer modèles avec fenêtres et min_count différents (déjà entraîné quelques variantes), et évaluer qualitativement via analogies et similarités.
+- Pour Word2Vec: comparer modèles avec fenêtres et min_count différents (déjà entraîné avec quelques variantes), et évaluer qualitativement via analogies et similarités.
